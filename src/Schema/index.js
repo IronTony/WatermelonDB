@@ -1,6 +1,6 @@
 // @flow
 
-import { contains } from 'rambdax'
+import { includes } from 'rambdax'
 
 import logger from '../utils/common/logger'
 import isDevelopment from '../utils/common/isDevelopment'
@@ -62,11 +62,11 @@ export function validateColumnSchema(column: ColumnSchema): void {
   if (isDevelopment) {
     invariant(column.name, `Missing column name`)
     invariant(
-      contains(column.type, ['string', 'boolean', 'number']),
+      includes(column.type, ['string', 'boolean', 'number']),
       `Invalid type ${column.type} for column ${column.name} (valid: string, boolean, number)`,
     )
     invariant(
-      !contains(column.name, ['id', '_changed', '_status']),
+      !includes(column.name, ['id', '_changed', '_status']),
       `You must not define a column with name ${column.name}`,
     )
     if (column.name === 'created_at' || column.name === 'updated_at') {
